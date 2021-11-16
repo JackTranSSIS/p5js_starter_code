@@ -1,0 +1,25 @@
+let xpos = 20;
+let ypos = 50;
+let dx = 5;
+let dy = 5;
+
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  background(0);
+  ellipse(xpos,ypos,20,20);
+  fill(255,0,0)
+  
+  if (xpos>=width-15 || xpos ==15)
+  {
+    dx = -dx
+  }
+  if (ypos>=height-15 || ypos==15)
+  {
+    dy = -dy
+  }
+  xpos = xpos + dx;
+  ypos = ypos + dy;
+}
