@@ -2,45 +2,39 @@
 // I've looked through some tutorial videos on Youtube.
 // Something diffrent in this branch
 
-let xpos = 20;
-let ypos = 50;
-let dx = 5;
-let dy = 5;
+//Hi Jack, I updated the circle so that it bounces randomly, not just follow 1 path
+let xpos = 80;
+let ypos = 90;
+let xdirection, ydirection
+
 function setup() {
-  createCanvas(400, 400);
-  
-  
+  createCanvas(400, 400);  
+  xdirection = random() * 2; // Left or Right
+  ydirection = random() * 2; // Top to Bottom
 }
 
 
 function draw() {
   background(30)
-  
-
-
   noFill()
   stroke(255)
   
   for (var i = 0; i < 20; i++){
-    
     var r = map(sin(frameCount), -1, 1, 0, 255)
     var g = map(i, 0, 20, 0 ,255)
-    var b = map(cos(frameCount), -1, 1, 255, 0)
-    
-    stroke(r,g,b)
-    
-    }
- ellipse(xpos,ypos,50,50);
- 
-  
-  if (xpos>=width-15 || xpos ==15)
+    var b = map(cos(frameCount), -1, 1, 255, 0)    
+    stroke(r,g,b)    
+    }  
+  //Ensure that the ball doesn't jump out of the boundary 
+  if (xpos < 25 || xpos >=width - 25)
   {
-    dx = -dx
+    xdirection *= -1 
   }
-  if (ypos>=height-15 || ypos==15)
+  if (ypos < 25 || ypos >=height - 25)
   {
-    dy = -dy
+    ydirection *= -1 
   }
-  xpos = xpos + dx;
-  ypos = ypos + dy;
+  xpos = xpos + 4 * xdirection;
+  ypos = ypos + 4 * ydirection;
+  circle(xpos, ypos, 50);
 }
