@@ -2,28 +2,42 @@
 // I've looked through some tutorial videos on Youtube.
 // Something diffrent in this branch
 
-let xpos = 20;
-let ypos = 50;
-let dx = 5;
-let dy = 5;
-
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(400, 400, WEBGL);
+  angleMode(DEGREES)
+  
 }
 
+
 function draw() {
-  background(0);
-  ellipse(xpos,ypos,20,20);
-  fill(255,0,0)
+  background(30)
   
-  if (xpos>=width-15 || xpos ==15)
-  {
-    dx = -dx
+  rotateX(60)
+  
+  noFill()
+  stroke(255)
+  
+  for (var i = 0; i < 20; i++){
+    
+    var r = map(sin(frameCount), -1, 1, 0, 255)
+    var g = map(i, 0, 20, 0 ,255)
+    var b = map(cos(frameCount), -1, 1, 255, 0)
+    
+    stroke(r,g,b)
+    
+    
+    
+    beginShape()
+    for (var j = 0; j < 360; j += 200){
+      var rad = i * 8
+      var x = rad * cos(j)
+      var y = rad * sin(j)
+      var z = sin(frameCount * 2 + i * 10) * 50
+      
+      vertex (x,y,z)
+      
+    }
+    endShape(CLOSE)
   }
-  if (ypos>=height-15 || ypos==15)
-  {
-    dy = -dy
-  }
-  xpos = xpos + dx;
-  ypos = ypos + dy;
+  
 }
