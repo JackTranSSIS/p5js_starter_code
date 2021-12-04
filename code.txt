@@ -6,6 +6,11 @@
 let xpos = 80;
 let ypos = 90;
 let xdirection, ydirection
+var col = {
+  r: 255,
+  g: 0,
+  b: 0
+}
 
 function setup() {
   createCanvas(400, 400);  
@@ -17,12 +22,14 @@ function setup() {
 function draw() {
   noFill()
   stroke(255)
-  
+  col.r = random(100,255);
+  col.g = 0;
+  col.b = random(100,190)
   for (var i = 0; i < 20; i++){
-    var r = map(sin(frameCount), -1, 1, 0, 255)
-    var g = map(i, 0, 20, 0 ,255)
-    var b = map(cos(frameCount), -1, 1, 255, 0)    
-    stroke(r,g,b)    
+    map(sin(frameCount), -1, 1, 0, 255)
+    map(i, 0, 20, 0 ,255)
+    map(cos(frameCount), -1, 1, 255, 0)    
+    stroke(col.r,col.g,col.b)       
     }  
   //Ensure that the ball doesn't jump out of the boundary 
   if (xpos < 25 || xpos >=width - 25)
